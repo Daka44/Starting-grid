@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">F1 초보자 가이드</h1>
+    
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for guide in guides %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ guide.title }}</h5>
+                    <p class="card-text">{{ guide.summary }}</p>
+                    <a href="{% url 'guide_detail' guide.pk %}" class="btn btn-danger stretched-link">
+                        자세히 보기
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

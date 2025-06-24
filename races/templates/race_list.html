@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1 class="mb-4">F1 레이스 캘린더</h1>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>국가</th>
+                <th>날짜</th>
+                <th>장소</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for race in races %}
+            <tr style="cursor: pointer" onclick="window.location='{% url 'race_detail' race.pk %}'" 
+                {% if race == next_race %}
+                    class="table-danger"
+                {% elif race.date < current_date %}
+                    class="table-secondary"
+                {% endif %}>
+                <td>{{ race.nation }}</td>
+                <td>{{ race.date }}</td>
+                <td>{{ race.location }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %} 
+
+
+
